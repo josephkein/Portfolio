@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Kein Honrada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    poppins: ['Poppins', 'sans-serif'],
+                    birthstone: ['Birthstone', 'cursive']
+                },
+                colors: {
+                    lightwhite: '#f1f1f1'
+                }
+            }
+        }
+    }
+    </script>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f1f1;
+        }
+        .cursor{
+            animation: blink 0.7s infinite;
+        }
+        #skills-container::before,
+        #skills-container::after{
+            background: linear-gradient(to right, rgba(241, 241, 241, 1) 0%, rgba(241, 241, 241, 0) 100%);
+            content: "";
+            position: absolute;
+            width: 10%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        html.dark #skills-container::before,
+        html.dark #skills-container::after{
+            background: linear-gradient(to right, rgb(9, 9, 11) 0%, rgba(9, 9, 11, 0) 100%);
+        }
+
+        #skills-container::before{
+            left: 0;
+            top: 0;
+        }
+
+        #skills-container::after{
+            right: 0;
+            top: 0;
+            transform: rotateY(180deg);
+        }
+
+        #skills{
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll{
+            0%{
+                transform: translateX(0);
+            }
+            100%{
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes blink{
+            50%{
+                opacity: 0;
+            }
+        }
+        .bg-grade{
+            background: linear-gradient(90deg, rgb(240, 143, 78), rgb(247, 44, 169));
+        }
+        .text-color{
+            background: linear-gradient(90deg, #F05858, #AD4F01);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link.active{
+            color: rgb(249, 115, 22) !important;
+        }
+        .bg-lightwhite{
+            background-color: #f1f1f1;
+        }
+        .text-lightwhite{
+            color: #f1f1f1;
+        }
+    </style>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="text-black transition-colors duration-300 dark:bg-zinc-950 dark:text-lightwhite px-4">
+    <header id="site-header" class="fixed top-0 left-0 w-full bg-lightwhite z-50 transition-all duration-300 dark:bg-zinc-950">
+        <nav class="max-w-7xl mx-auto p-4">
+            <div class="container mx-auto flex items-center justify-between">
+                <a href="#" class="text-gray-800 text-4xl font-birthstone font-bold transition-colors dark:text-lightwhite">Jkein</a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#home" class="nav-link text-gray-800 font-poppins text-md hover:text-orange-500 mx-2 transition-colors dark:text-lightwhite">Home</a>
+                    <a href="#experiences" class="nav-link text-gray-800 font-poppins text-md hover:text-orange-500 mx-2 transition-colors dark:text-lightwhite">Experiences</a>
+                    <a href="#projects" class="nav-link text-gray-800 font-poppins text-md hover:text-orange-500 mx-2 transition-colors dark:text-lightwhite">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-800 font-poppins text-md hover:text-orange-500 mx-2 transition-colors dark:text-lightwhite">Contact</a>
+                    <button id="theme-toggle" type="button" class="w-10 h-10 rounded-full border border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-500 transition-all dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-orange-500 dark:hover:text-orange-500" aria-label="Toggle dark mode">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="max-w-7xl mx-auto">
+        <section id="home" class="relative min-h-screen py-28 md:h-screen md:py-0 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4 gap-6">
+            <img src="images/idpic.png" alt="" class="w-40 h-40 sm:w-60 sm:h-60 bg-grade rounded-full mb-4 md:mb-6 object-cover border border-orange-500">
+            <div class="text-center">
+                <h1 class="text-3xl sm:text-5xl font-bold mb-6">Hello, I'm <span class="text-color">Joseph Kein Honrada</span></h1>
+                <p class="text-lg sm:text-2xl text-gray-600 mb-4 transition-colors dark:text-zinc-300">and I'm a <span id="job-title" class="font-bold text-color"></span><span class="cursor text-orange-500">|</span></p>
+                <p class="text-base sm:text-lg text-gray-600 w-full transition-colors dark:text-zinc-300">A Jr. Full Stack Developer passionate about building modern, responsive,
+                     and user-friendly web applications. I enjoy turning ideas into functional systems using clean code
+                      and modern web technologies.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-black text-lightwhite px-6 py-3 rounded-full font-bold flex gap-2 items-center hover:bg-lightwhite hover:text-black border-2 border-black hover:shadow-lg hover:shadow-black/30 transition-all dark:bg-lightwhite dark:text-black dark:border-lightwhite dark:hover:bg-zinc-950 dark:hover:text-lightwhite"><i class="fa-solid fa-envelope"></i>Get In Touch</button>
+                <button class="text-black px-6 py-3 rounded-full font-bold flex gap-2 items-center border-2 border-black hover:shadow-lg hover:shadow-black/30 transition-all dark:bg-zinc-950 dark:text-lightwhite dark:border-lightwhite dark:hover:bg-lightwhite dark:hover:text-black"><i class="fa-solid fa-download"></i>Download CV</button>
+            </div>
+            
+            <div class="absolute left-0 -bottom-10 md:-bottom-10 flex w-full flex-col items-center gap-8 md:gap-12 px-4">
+                <span class="text-xl text-gray-800 tracking-wide font-medium transition-colors dark:text-zinc-200">EXPERIENCED WITH</span>
+                <div class="relative w-full max-w-4xl overflow-hidden" id="skills-container">
+                    <div class="flex gap-10" id="skills">
+                        <img src="images/html.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/css.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/js.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/php.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/git.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/jquery.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/mysql.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/tailwindcss.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/supabase.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/bootstrap.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+
+                        <!-- duplicate -->
+                        <img src="images/html.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/css.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/js.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/php.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/git.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/jquery.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/mysql.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/tailwindcss.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/supabase.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                        <img src="images/bootstrap.png" alt="" class="w-full h-10 inline-block grayscale hover:grayscale-0 dark:grayscale-0 transition-all">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="experiences" class="py-20 md:py-28 px-4 mt-32 md:mt-20">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Title -->
+                <div class="text-center mb-14 md:mb-24">
+                    <h2 class="text-3xl text-gray-800 dark:text-zinc-200">
+                        Experiences
+                    </h2>
+                    <div class="w-24 h-0.5 bg-orange-500 mx-auto mt-2"></div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative">
+
+                    <!-- Center Line -->
+                    <div class="absolute left-4 md:left-1/2 top-0 h-full w-[2px] -ml-px bg-gray-300"></div>
+
+                    <!-- Experience 1 -->
+                    <div class="grid grid-cols-[2rem_1fr] md:grid-cols-2 gap-x-4 md:gap-16 mb-16 md:mb-20 relative">
+
+                        <!-- Content -->
+                        <div class="col-start-2 row-start-2 md:col-start-1 md:row-start-1 text-left md:text-right pr-0 md:pr-16">
+                            <h3 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-4">
+                                Freelance
+                            </h3>
+
+                            <h4 class="text-xl font-semibold text-gray-800 mb-5 dark:text-zinc-300">
+                                Web Developer
+                            </h4>
+
+                            <p class="text-gray-600 leading-9 text-md dark:text-zinc-300">
+                                Develop responsive websites and web applications
+                                using HTML, CSS, JavaScript, Tailwind CSS,
+                                PHP, MySQL, and modern web technologies.
+                                Focus on clean UI design, responsive layouts,
+                                performance optimization, and user experience.
+                            </p>
+                        </div>
+
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-4 md:left-1/2 top-2 z-10 h-4 w-4 -ml-2">
+                            <div class="w-4 h-4 bg-orange-500 rounded-full border-4 border-orange-200"></div>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="col-start-2 row-start-1 md:col-start-2 md:row-start-1 pl-0 mb-4 md:mb-0">
+                            <span class="inline-block px-4 py-2 rounded-full bg-orange-500 text-lightwhite font-semibold text-md border-4 border-orange-200">
+                                Present
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="grid grid-cols-[2rem_1fr] md:grid-cols-2 gap-x-4 md:gap-16 mb-16 md:mb-20 relative">
+
+                        <!-- Date -->
+                        <div class="col-start-2 row-start-1 md:col-start-1 md:row-start-1 text-left md:text-right pr-0 mb-4 md:mb-0">
+                            <span class="inline-block px-4 py-2 rounded-full bg-orange-500 text-lightwhite font-semibold text-md border-4 border-orange-200">
+                                2024 - Present
+                            </span>
+                        </div>
+
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-4 md:left-1/2 top-2 z-10 h-4 w-4 -ml-2">
+                            <div class="w-4 h-4 bg-orange-500 rounded-full border-4 border-orange-200"></div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="col-start-2 row-start-2 md:col-start-2 md:row-start-1 pl-0 md:pl-16">
+                            <h3 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-4">
+                                Student Developer
+                            </h3>
+
+                            <h4 class="text-xl font-semibold text-gray-800 mb-5 dark:text-zinc-300">
+                                System Designer
+                            </h4>
+
+                            <p class="text-gray-600 leading-9 text-md dark:text-zinc-300">
+                                Develop academic systems and websites for
+                                college projects. Create ERD diagrams,
+                                database structures, wireframes, UI/UX designs,
+                                and complete system documentation while
+                                applying software engineering principles.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 -->
+                    <div class="grid grid-cols-[2rem_1fr] md:grid-cols-2 gap-x-4 md:gap-16 relative">
+
+                        <!-- Content -->
+                        <div class="col-start-2 row-start-2 md:col-start-1 md:row-start-1 text-left md:text-right pr-0 md:pr-16">
+                            <h3 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-4">
+                                BIST Inc.
+                            </h3>
+
+                            <h4 class="text-xl font-semibold text-gray-800 mb-5 dark:text-zinc-300">
+                                Web Development Intern
+                            </h4>
+
+                            <p class="text-gray-600 leading-9 text-md dark:text-zinc-300">
+                                Developed websites using HTML, CSS, and
+                                JavaScript during Grade 12 work immersion.
+                                Assisted with responsive layouts, page design,
+                                and gained practical experience in web
+                                development and problem solving.
+                            </p>
+                        </div>
+
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-4 md:left-1/2 top-2 z-10 h-4 w-4 -ml-2">
+                            <div class="w-4 h-4 bg-orange-500 rounded-full border-4 border-orange-200"></div>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="col-start-2 row-start-1 md:col-start-2 md:row-start-1 pl-0 mb-4 md:mb-0">
+                            <span class="inline-block px-4 py-2 rounded-full bg-orange-500 text-lightwhite font-semibold text-md border-4 border-orange-200">
+                                Grade 12 Immersion
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="px-4 py-28">
+            <div class="mx-auto max-w-6xl">
+                <div class="mb-14 text-center">
+                    <span class="text-3xl text-gray-800 transition-colors dark:text-zinc-200">Projects</span>
+                    <div class="mx-auto mt-2 h-0.5 w-24 bg-orange-500"></div>
+                </div>
+
+                <div class="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+                    <article class="group overflow-hidden rounded-lg border border-zinc-200 bg-lightwhite shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-orange-500/60">
+                        <div class="flex h-44 items-center justify-center bg-gradient-to-br from-orange-100 via-lightwhite to-rose-100 transition-transform duration-300 group-hover:scale-105 dark:from-orange-500/20 dark:via-zinc-900 dark:to-rose-500/20">
+                            <img src="images/flexfitpro.png" alt="FlexFit Pro" class="h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="mt-4 text-2xl font-bold text-zinc-900 transition-colors dark:text-lightwhite">FlexFit Pro</h3>
+                            <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">A gym management system for handling customers, trainers, payments, memberships, plans, staff users, backup and recovery, plus analytics for onsite visits and transaction revenue.</p>
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">PHP</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Tailwind CSS</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">JQuery</span>
+                            </div>
+                            <a href="#" class="mt-6 inline-flex items-center text-sm gap-2 font-semibold text-orange-500 transition-all group-hover:gap-3">View Project <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="group overflow-hidden rounded-lg border border-zinc-200 bg-lightwhite shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-orange-500/60">
+                        <div class="flex h-44 items-center justify-center bg-gradient-to-br from-sky-100 via-lightwhite to-orange-100 transition-transform duration-300 group-hover:scale-105 dark:from-sky-500/20 dark:via-zinc-900 dark:to-orange-500/20">
+                            <img src="images/rentora.png" alt="Restaurant Landing Page" class="h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="mt-4 text-2xl font-bold text-zinc-900 transition-colors dark:text-lightwhite">Rentora</h3>
+                            <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">A rental property platform with two user roles: tenants can browse and view available rental properties, while landlords can post and manage their property listings.</p>
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">PHP</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Tailwind CSS</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">JavaScript</span>
+                            </div>
+                            <a href="#" class="mt-6 inline-flex items-center text-sm gap-2 font-semibold text-orange-500 transition-all group-hover:gap-3">View Project <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="group overflow-hidden rounded-lg border border-zinc-200 bg-lightwhite shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-orange-500/60">
+                        <div class="flex h-44 items-center justify-center bg-gradient-to-br from-emerald-100 via-lightwhite to-orange-100 transition-transform duration-300 group-hover:scale-105 dark:from-emerald-500/20 dark:via-zinc-900 dark:to-orange-500/20">
+                            <img src="images/eggonomics.png" alt="Portfolio Landing Page" class="h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="mt-4 text-2xl font-bold text-zinc-900 transition-colors dark:text-lightwhite">Eggonomics</h3>
+                            <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">An egg production tracking system for monitoring total egg production, total sales, expenses, and revenue in one organized dashboard.</p>
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">HTML</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">CSS</span>
+                                <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Javascript</span>
+                            </div>
+                            <a href="#" class="mt-6 inline-flex items-center text-sm gap-2 font-semibold text-orange-500 transition-all group-hover:gap-3">View Project <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-flex text-sm items-center gap-2 rounded-full border-2 border-orange-500 px-4 py-2 font-semibold text-orange-500 transition-all hover:bg-orange-500 hover:text-lightwhite hover:shadow-lg hover:shadow-orange-500/30">
+                        View all projects
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="py-28 px-4">
+            <div class="m-auto max-w-6xl">
+                <div class="text-center mb-18">
+                    <h2 class="text-3xl text-gray-800 dark:text-zinc-200">
+                        Contact
+                    </h2>
+                    <div class="w-24 h-0.5 bg-orange-500 mx-auto mt-2"></div>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 justify-center max-w-5xl mx-auto">
+                    <div class="flex-1 flex flex-col justify-center">
+                        <div class="w-full max-w-sm mx-auto lg:mx-0">
+                            <h1 class="font-medium text-2xl sm:text-3xl text-gray-800 dark:text-zinc-200 w-full mb-10">Let's discuss on something <span class="text-color">exciting</span> together!</h1>
+                            <div class="flex flex-col gap-2">
+                                <div class="py-2 px-4 bg-orange-100 border border-orange-500 rounded flex gap-4 items-center w-full break-words">
+                                    <i class="fa-solid fa-envelope text-color text-lg"></i>    
+                                    josephkeinhonrada@gmail.com
+                                </div>
+                                <div class="py-2 px-4 bg-orange-100 border border-orange-500 rounded flex gap-4 items-center w-full">
+                                    <i class="fa-solid fa-phone text-color text-lg"></i>
+                                    +63 951 034 1285
+                                </div>
+                                <div class="py-2 px-4 bg-orange-100 border border-orange-500 rounded flex gap-4 items-center w-full">
+                                    <i class="fa-solid fa-location-dot text-color text-lg"></i>
+                                    Hilongos, Leyte
+                                </div>
+                                <div class="py-2 px-4 bg-orange-100 border border-orange-500 rounded flex gap-4 items-center w-full">
+                                    <i class="fa-brands fa-github text-color text-lg"></i>
+                                    <a href="https://github.com/josephkein" class="underline">josephkein</a>
+                                </div>
+                                <div class="py-2 px-4 bg-orange-100 border border-orange-500 rounded flex gap-4 items-center w-full">
+                                    <i class="fa-brands fa-facebook text-color text-lg"></i>
+                                    <a href="https://www.facebook.com/jkien.honrada.9" class="underline">Joseph Kein Honrada</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex justify-center lg:justify-end h-full">
+                        <form class="flex w-full max-w-sm flex-col gap-6">
+                            <div class="input">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-zinc-300">Your Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" placeholder="John Doe" class="w-full rounded-lg bg-lightwhite border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:shadow focus:shadow-orange-500/50 transition-all dark:border-zinc-700 dark:bg-zinc-900 dark:text-lightwhite">
+                            </div>
+                            <div class="input">
+                                <label for="company" class="block text-sm font-medium text-gray-700 mb-1 dark:text-zinc-300">Company (Optional)</label>
+                                <input type="text" id="company" placeholder="Company Name" class="w-full rounded-lg bg-lightwhite border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:shadow focus:shadow-orange-500/50 transition-all dark:border-zinc-700 dark:bg-zinc-900 dark:text-lightwhite">
+                            </div>
+                            <div class="input">
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1 dark:text-zinc-300">Your Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" placeholder="example@email.com" class="w-full rounded-lg bg-lightwhite border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:shadow focus:shadow-orange-500/50 transition-all dark:border-zinc-700 dark:bg-zinc-900 dark:text-lightwhite">
+                            </div>
+                        
+                            <div class="input">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1 dark:text-zinc-300">Your Message <span class="text-red-500">*</span></label>
+                                <textarea id="message" placeholder="" class="w-full rounded-lg bg-lightwhite border border-zinc-300 px-4 py-3 h-32 resize-none focus:outline-none focus:ring-1 focus:ring-orange-500 focus:shadow focus:shadow-orange-500/50 transition-all dark:border-zinc-700 dark:bg-zinc-900 dark:text-lightwhite"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="border-2 w-full border-gray-800 px-4 py-2 rounded-full font-medium hover:shadow-lg transition-all">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-lightwhite p-4 text-center transition-colors duration-300 dark:bg-zinc-950">
+        <p class="text-gray-600 text-sm dark:text-zinc-300">© 2026 Joseph Kein Honrada | Portfolio. All rights reserved.</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

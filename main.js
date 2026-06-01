@@ -48,6 +48,11 @@ const texts = [
     const pageSections = document.querySelectorAll('main section[id]');
     const themeToggle = document.getElementById('theme-toggle');
     const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const mobileThemeToggleIcon = document.getElementById('mobile-theme-toggle-icon');
 
     function updateHeaderShadow() {
         const hasScrolled = window.scrollY > 20;
@@ -60,6 +65,17 @@ const texts = [
         themeToggleIcon.classList.toggle('fa-moon', !isDark);
         themeToggleIcon.classList.toggle('fa-sun', isDark);
         themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        mobileThemeToggleIcon.classList.toggle('fa-moon', !isDark);
+        mobileThemeToggleIcon.classList.toggle('fa-sun', isDark);
+        mobileThemeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    function setMobileMenuOpen(isOpen) {
+        mobileMenu.classList.toggle('hidden', !isOpen);
+        mobileMenuToggle.setAttribute('aria-expanded', isOpen.toString());
+        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        mobileMenuIcon.classList.toggle('fa-bars', !isOpen);
+        mobileMenuIcon.classList.toggle('fa-xmark', isOpen);
     }
 
     function updateActiveNavLink() {
@@ -83,9 +99,31 @@ const texts = [
         updateThemeIcon();
     });
 
+    mobileThemeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        updateThemeIcon();
+    });
+
+    mobileMenuToggle.addEventListener('click', () => {
+        setMobileMenuOpen(mobileMenu.classList.contains('hidden'));
+    });
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            setMobileMenuOpen(false);
+        });
+    });
+
     updateThemeIcon();
     updateHeaderShadow();
     updateActiveNavLink();
     window.addEventListener('scroll', updateHeaderShadow);
     window.addEventListener('scroll', updateActiveNavLink);
-    window.addEventListener('resize', updateActiveNavLink);
+    window.addEventListener('resize', () => {
+        updateActiveNavLink();
+
+        if (window.innerWidth >= 768) {
+            setMobileMenuOpen(false);
+        }
+    });

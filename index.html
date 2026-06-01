@@ -123,6 +123,21 @@
                         <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
                     </button>
                 </div>
+                <button id="mobile-menu-toggle" type="button" class="md:hidden w-10 h-10 rounded-full border border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-500 transition-all dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-orange-500 dark:hover:text-orange-500" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pt-4">
+                <div class="flex flex-col gap-3 border-t border-zinc-200 py-4 dark:border-zinc-800">
+                    <a href="#home" class="nav-link text-gray-800 font-poppins text-base hover:text-orange-500 transition-colors dark:text-lightwhite">Home</a>
+                    <a href="#experiences" class="nav-link text-gray-800 font-poppins text-base hover:text-orange-500 transition-colors dark:text-lightwhite">Experiences</a>
+                    <a href="#projects" class="nav-link text-gray-800 font-poppins text-base hover:text-orange-500 transition-colors dark:text-lightwhite">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-800 font-poppins text-base hover:text-orange-500 transition-colors dark:text-lightwhite">Contact</a>
+                    <button id="mobile-theme-toggle" type="button" class="mt-1 flex w-full items-center justify-between rounded-lg border border-zinc-300 px-4 py-3 text-left text-zinc-700 hover:border-orange-500 hover:text-orange-500 transition-all dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-orange-500 dark:hover:text-orange-500" aria-label="Toggle dark mode">
+                        <span class="font-poppins text-base">Theme</span>
+                        <i id="mobile-theme-toggle-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
             </div>
         </nav>
     </header>

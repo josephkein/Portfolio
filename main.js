@@ -93,6 +93,54 @@ const texts = [
         });
     }
 
+    function initScrollAnimations() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const animatedElements = document.querySelectorAll([
+            '#home > img',
+            '#home > div:not(.absolute)',
+            '#home > .absolute',
+            '#experiences .text-center',
+            '#experiences .relative > .grid',
+            '#projects .mb-14',
+            '#projects article',
+            '#projects .mt-12',
+            '#contact .text-center',
+            '#contact .flex-1',
+            '#contact .input',
+            '#contact form button'
+        ].join(', '));
+
+        animatedElements.forEach((element, index) => {
+            element.classList.add('scroll-animate');
+            element.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+        });
+
+        if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+            animatedElements.forEach((element) => {
+                element.classList.add('is-visible');
+                element.style.transitionDelay = '0ms';
+            });
+            return;
+        }
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -12% 0px',
+            threshold: 0.15
+        });
+
+        animatedElements.forEach((element) => {
+            scrollObserver.observe(element);
+        });
+    }
+
     themeToggle.addEventListener('click', () => {
         document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
@@ -118,6 +166,7 @@ const texts = [
     updateThemeIcon();
     updateHeaderShadow();
     updateActiveNavLink();
+    initScrollAnimations();
     window.addEventListener('scroll', updateHeaderShadow);
     window.addEventListener('scroll', updateActiveNavLink);
     window.addEventListener('resize', () => {
